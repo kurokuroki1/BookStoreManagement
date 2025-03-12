@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class BookUtli {
+public class BookUtil {
     static Scanner scanner = new Scanner(System.in);
 
     public static double getDoubleInput(String prompt, double min) {

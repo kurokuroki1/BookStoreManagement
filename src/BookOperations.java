@@ -12,10 +12,10 @@ public class BookOperations {
     public void handleAddBook() {
         try {
             System.out.println("\n====== Add a new book ======");
-            String title = BookUtli.getNonEmptyInput("Enter title: ");
-            String author = BookUtli.getNonEmptyInput("Enter author: ");
-            double price = BookUtli.getDoubleInput("Enter Price: $", 0.01);
-            int stock = BookUtli.getIntInput("Enter quantity to add: ", 0, Integer.MAX_VALUE);
+            String title = BookUtil.getNonEmptyInput("Enter title: ");
+            String author = BookUtil.getNonEmptyInput("Enter author: ");
+            double price = BookUtil.getDoubleInput("Enter Price: $", 0.01);
+            int stock = BookUtil.getIntInput("Enter quantity to add: ", 0, Integer.MAX_VALUE);
 
             String id = bookManager.addBook(title, price, author, stock);
             System.out.println("Book added successfully with ID: " + id);
@@ -28,7 +28,7 @@ public class BookOperations {
         try {
             System.out.println("\n====== Modify Book Details ======");
             System.out.println("Enter ISBN of the book you would like to modify: ");
-            String isbn =  BookUtli.getNonEmptyInput("Enter ISBN of the book you would like to modify: ");
+            String isbn =  BookUtil.getNonEmptyInput("Enter ISBN of the book you would like to modify: ");
 
             HashMap<String, Book> booksMap = bookManager.getAllBooks();
             if (!booksMap.containsKey(isbn)) {
@@ -63,7 +63,7 @@ public class BookOperations {
                 }
 
                 // Get user choice for modification type
-                int choice = BookUtli.getIntInput("Enter your choice (1-5): ", 1, 5);
+                int choice = BookUtil.getIntInput("Enter your choice (1-5): ", 1, 5);
 
                 if (choice == 5) {
                     System.out.println("Modification cancelled.");
@@ -72,25 +72,25 @@ public class BookOperations {
 
                 switch (choice) {
                     case 1:
-                        String newTitle = BookUtli.getNonEmptyInput("Enter new title: ");
+                        String newTitle = BookUtil.getNonEmptyInput("Enter new title: ");
                         bookManager.updateBookTitle(isbn, newTitle);
                         break;
                     case 2:
-                        String newAuthor = BookUtli.getNonEmptyInput("Enter new author: ");
+                        String newAuthor = BookUtil.getNonEmptyInput("Enter new author: ");
                         bookManager.updateBookAuthor(isbn, newAuthor);
                         break;
                     case 3:
-                        double newPrice = BookUtli.getDoubleInput("Enter new price: $", 0.01);
+                        double newPrice = BookUtil.getDoubleInput("Enter new price: $", 0.01);
                         bookManager.updateBookPrice(isbn, newPrice);
                         break;
                     case 4:
-                        int newStock = BookUtli.getIntInput("Enter new stock quantity: ", 0, Integer.MAX_VALUE);
+                        int newStock = BookUtil.getIntInput("Enter new stock quantity: ", 0, Integer.MAX_VALUE);
                         bookManager.updateBookStock(isbn, newStock);
                         break;
                 }
 
                 // After each modification, ask if the user wants to modify other stuff
-                String response = BookUtli.getNonEmptyInput("\nDo you want to modify other details? (yes/no): ").toLowerCase();
+                String response = BookUtil.getNonEmptyInput("\nDo you want to modify other details? (yes/no): ").toLowerCase();
                 if (response.equals("no")) {
                     modifyAnother = false;  // Exit the loop if the user says "no"
                 }
@@ -156,7 +156,7 @@ public class BookOperations {
         }
 
         // Get and validate the ISBN input
-        String isbn = BookUtli.getNonEmptyInput("Enter the ISBN of the book to modify: ");
+        String isbn = BookUtil.getNonEmptyInput("Enter the ISBN of the book to modify: ");
 
         // Check if the ISBN exists in the system
         if(bookManager.getAllBooks().containsKey(isbn)) {
@@ -171,17 +171,17 @@ public class BookOperations {
             System.out.println("2. Remove book completely");
             System.out.println("3. Cancel");
 
-            int choice = BookUtli.getIntInput("Enter your choice (1-3): ", 1, 3);
+            int choice = BookUtil.getIntInput("Enter your choice (1-3): ", 1, 3);
 
             switch(choice) {
                 case 1: // Reduce stock
                     if(currentStock > 0) {
-                        int reduceBy = BookUtli.getIntInput("Enter quantity to remove (1-" + currentStock + "): ", 1, currentStock);
+                        int reduceBy = BookUtil.getIntInput("Enter quantity to remove (1-" + currentStock + "): ", 1, currentStock);
                         book.setStock(currentStock - reduceBy);
                         System.out.println("Stock reduced. New stock level: " + book.getStock());
                     } else {
                         System.out.println("The book is already out of stock. Would you like to remove it completely?");
-                        String response = BookUtli.getNonEmptyInput("Enter 'yes' to remove or 'no' to cancel: ").toLowerCase();
+                        String response = BookUtil.getNonEmptyInput("Enter 'yes' to remove or 'no' to cancel: ").toLowerCase();
                         if(response.equals("yes")) {
                             bookManager.removeBook(isbn);
                             System.out.println("Book with ISBN " + isbn + " has been completely removed.");
@@ -257,14 +257,14 @@ public class BookOperations {
             System.out.println("3. By Author");
             System.out.println("4. Cancel");
 
-            int searchOption = BookUtli.getIntInput("Enter your choice (1-4): ", 1, 4);
+            int searchOption = BookUtil.getIntInput("Enter your choice (1-4): ", 1, 4);
 
             if (searchOption == 4) {
                 System.out.println("Search cancelled.");
                 return;
             }
 
-            String searchTerm = BookUtli.getNonEmptyInput("Enter search term: ");
+            String searchTerm = BookUtil.getNonEmptyInput("Enter search term: ");
             HashMap<String, Book> booksMap = bookManager.getAllBooks();
 
             if (booksMap.isEmpty()) {
@@ -327,7 +327,7 @@ public class BookOperations {
             System.out.println("1. By Title (A-Z)");
             System.out.println("2. Cancel");
 
-            int sortOption = BookUtli.getIntInput("Enter your choice (1-4): ", 1, 4);
+            int sortOption = BookUtil.getIntInput("Enter your choice (1-4): ", 1, 4);
 
 
             // Convert HashMap to array for bubble sort
