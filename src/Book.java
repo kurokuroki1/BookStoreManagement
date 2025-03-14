@@ -1,4 +1,3 @@
-
 public class Book {
     private final String ISBN;
     private String title;
@@ -14,7 +13,7 @@ public class Book {
         this.stock = stock;
     }
 
-    public String getID() {
+    public String getISBN() {
         return ISBN;
     }
 
@@ -29,9 +28,6 @@ public class Book {
     }
     public int getStock() {
         return stock;
-    }
-    public boolean outofStock() {
-        return stock == 0;
     }
 
     public void setTitle(String title) {

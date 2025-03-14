@@ -23,7 +23,7 @@ public class BookManager {
                         existingBook.getPrice() == price) {
 
                     // Book already exists, just update its stock
-                    String existingISBN = existingBook.getID();
+                    String existingISBN = existingBook.getISBN();
                     int currentStock = existingBook.getStock();
                     existingBook.setStock(currentStock + stock);
                     return existingISBN;
@@ -150,12 +150,13 @@ public class BookManager {
     }
     // Display book details
     static void displayBook(Book book) {
-        System.out.printf("%-20s: %s%n", "ISBN", book.getID());
-        System.out.printf("%-20s: %s%n", "Title", book.getTitle());
-        System.out.printf("%-20s: %s%n", "Author", book.getAuthor());
-        System.out.printf("%-20s: $%.2f%n", "Price", book.getPrice());
-        System.out.printf("%-20s: %d%n", "Stock", book.getStock());
-        System.out.println("=====================================");
+        System.out.printf("\033[1;34m│\033[0m \033[1;36m%-12s\033[0m : \033[1;37m%-26s\033[1;34m│\033[0m%n", "ISBN", book.getISBN());
+        System.out.printf("\033[1;34m│\033[0m \033[1;36m%-12s\033[0m : \033[1;37m%-26s\033[1;34m│\033[0m%n", "Title", book.getTitle());
+        System.out.printf("\033[1;34m│\033[0m \033[1;36m%-12s\033[0m : \033[1;37m%-26s\033[1;34m│\033[0m%n", "Author", book.getAuthor());
+        System.out.printf("\033[1;34m│\033[0m \033[1;36m%-12s\033[0m : \033[1;32m$%-25.2f\033[1;34m│\033[0m%n", "Price", book.getPrice());
+        System.out.printf("\033[1;34m│\033[0m \033[1;36m%-12s\033[0m : \033[1;37m%-26d\033[1;34m│\033[0m%n", "Stock", book.getStock());
+        System.out.println("\033[1;34m└──────────────────────────────────────────┘\033[0m");
+
     }
 
 

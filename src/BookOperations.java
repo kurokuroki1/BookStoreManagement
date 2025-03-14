@@ -1,13 +1,13 @@
 import java.util.*;
 
 public class BookOperations {
-    private Scanner scanner;
-    private BookManager bookManager;
+    private final BookManager bookManager;
     public BookOperations() {
-        scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         bookManager = new BookManager();
     }
     public void AddBook() {
+        System.out.println("\n\033[1;32m Add New Book Selected\033[0m");
         try {
             System.out.println("\n====== Add a new book ======");
             String title = BookUtil.getNonEmptyInput("Enter title: ");
@@ -23,6 +23,7 @@ public class BookOperations {
     }
 
     public void ModifyBook() {
+        System.out.println("\n\033[1;32m Modify Book Selected\033[0m");
         try {
             System.out.println("\n====== Modify Book Details ======");
             String isbn =  BookUtil.getNonEmptyInput("Enter ISBN of the book you would like to modify: ");
@@ -37,7 +38,7 @@ public class BookOperations {
 
             // Print book details before modification in a custom format
             System.out.println("\nCurrent Book Details:");
-            System.out.println("ISBN: " + book.getID());
+            System.out.println("ISBN: " + book.getISBN());
             System.out.println("Title: " + book.getTitle());
             System.out.println("Author: " + book.getAuthor());
             System.out.println("Price: $" + String.format("%.2f", book.getPrice()));
@@ -95,7 +96,7 @@ public class BookOperations {
             // Retrieve the updated book details
             Book updatedBook = bookManager.getBook(isbn);
             System.out.println("\nBook updated successfully:");
-            System.out.println("ISBN: " + updatedBook.getID());
+            System.out.println("ISBN: " + updatedBook.getISBN());
             System.out.println("Title: " + updatedBook.getTitle());
             System.out.println("Author: " + updatedBook.getAuthor());
             System.out.println("Price: $" + String.format("%.2f", updatedBook.getPrice()));
@@ -107,6 +108,7 @@ public class BookOperations {
     }
 
     public void DisplayBooks() {
+        System.out.println("\n\033[1;32m Display All Books Selected\033[0m");
         try {
             System.out.println("\n====== Display All Books ======");
 
@@ -118,10 +120,10 @@ public class BookOperations {
                 System.out.println("No books available in the system.");
                 return;
             }
-            System.out.println("=====================================");
-            System.out.println("              Book Details");
-            System.out.println("=====================================");
-            // Iterate over the HashMap and print each book's details
+            System.out.println("\033[1;34m┌──────────────────────────────────────────┐\033[0m");
+            System.out.println("\033[1;34m│\033[0m \033[1;33m           BOOK DETAILS                  \033[1;34m│\033[0m");
+            System.out.println("\033[1;34m├──────────────────────────────────────────┤\033[0m");
+            // Iterate over the HashMap and print each book's deails
             for (Map.Entry<String, Book> entry : booksMap.entrySet()) {
                 Book book = entry.getValue();
                 BookManager.displayBook(book);
@@ -132,6 +134,7 @@ public class BookOperations {
     }
 
     public void RemoveBook() {
+        System.out.println("\n\033[1;32m Remove Book Selected\033[0m");
         System.out.println("\n====== Remove Book ======");
 
         HashMap<String, Book> booksMap = bookManager.getAllBooks();
@@ -220,6 +223,8 @@ public class BookOperations {
     }
 
     public void OutOfStock() {
+        System.out.println("\n\033[1;32m Listing out of stock  \033[0m");
+
         System.out.println("\n====== Out of Stock Books ======");
         try {
             HashMap<String, Book> booksMap = bookManager.getAllBooks();
@@ -230,9 +235,9 @@ public class BookOperations {
             }
 
             boolean foundOutOfStock = false;
-            System.out.println("=====================================");
-            System.out.println("              Book Details           ");
-            System.out.println("=====================================");
+            System.out.println("\033[1;34m┌──────────────────────────────────────────┐\033[0m");
+            System.out.println("\033[1;34m│\033[0m \033[1;33m           BOOK DETAILS                  \033[1;34m│\033[0m");
+            System.out.println("\033[1;34m├──────────────────────────────────────────┤\033[0m");
 
             for(Map.Entry<String, Book> entry : booksMap.entrySet()) {
                 String isbn = entry.getKey();
@@ -245,7 +250,7 @@ public class BookOperations {
             }
 
             if(!foundOutOfStock) {
-                System.out.println("All books are currently in stock.");
+                System.out.println("\n\033[1;32m All books are currently in stock.\033[0m");
             }
         } catch (Exception e) {
             System.err.println("Error checking out-of-stock books: " + e.getMessage());
@@ -253,6 +258,7 @@ public class BookOperations {
     }
 
     public void SearchBook() {
+        System.out.println("\n\033[1;32m Search Book Selected\033[0m");
         System.out.println("\n====== Search Book ======");
         try {
             System.out.println("How would you like to search?");
@@ -278,9 +284,9 @@ public class BookOperations {
 
             // Convert to a list and sort based on the selected search option
             List<Book> bookList = new ArrayList<>(booksMap.values());
-            System.out.println("=====================================");
-            System.out.println("              Book Details");
-            System.out.println("=====================================");
+            System.out.println("\033[1;34m┌──────────────────────────────────────────┐\033[0m");
+            System.out.println("\033[1;34m│\033[0m \033[1;33m           BOOK DETAILS                  \033[1;34m│\033[0m");
+            System.out.println("\033[1;34m├──────────────────────────────────────────┤\033[0m");
             switch (searchOption) {
                 case 1: // ISBN - Exact match binary search
                     List<String> isbnList = new ArrayList<>(booksMap.keySet());
@@ -341,6 +347,7 @@ public class BookOperations {
     }
 
     public void SortBooks() {
+        System.out.println("\n\033[1;32m Sort Book Selected\033[0m");
         System.out.println("\n====== Sort Books ======");
         try {
             HashMap<String, Book> booksMap = bookManager.getAllBooks();

@@ -11,24 +11,33 @@ public class Main {
 
     public static void main(String[] args) {
         Main ui = new Main();
-        boolean flag = true;
+        ui.runProgram();
+    }
 
-        System.out.println("Welcome to the Book Inventory System!");
+    private void runProgram() {
+        boolean flag = true;
+        System.out.println("\033[1;32m╔══════════════════════════════════════════════════╗");
+        System.out.println("║                                                  ║");
+        System.out.println("║          BOOK INVENTORY MANAGEMENT SYSTEM        ║");
+        System.out.println("║                                                  ║");
+        System.out.println("╚══════════════════════════════════════════════════╝\033[0m");
 
         while (flag) {
-            System.out.println("Press 1 to add a new book");
-            System.out.println("Press 2 to modify the book");
-            System.out.println("Press 3 to display all books");
-            System.out.println("Press 4 to search for a book");
-            System.out.println("Press 5 to sort the books");
-            System.out.println("Press 6 to remove a book");
-            System.out.println("Press 7 to list out of stock books");
-            System.out.println("Press 8 to exit");
+            System.out.println("\033[1;34m┌────────── MAIN MENU ──────────────────────┐\033[0m");
+            System.out.println("\033[1;36m│  1. \033[0m\033[1;37mAdd a New Book                        \033[1;36m│\033[0m");
+            System.out.println("\033[1;36m│  2. \033[0m\033[1;37mModify Book Details                   \033[1;36m│\033[0m");
+            System.out.println("\033[1;36m│  3. \033[0m\033[1;37mDisplay All Books                     \033[1;36m│\033[0m");
+            System.out.println("\033[1;36m│  4. \033[0m\033[1;37mSearch for a Book                     \033[1;36m│\033[0m");
+            System.out.println("\033[1;36m│  5. \033[0m\033[1;37mSort Books                            \033[1;36m│\033[0m");
+            System.out.println("\033[1;36m│  6. \033[0m\033[1;37mRemove a Book                         \033[1;36m│\033[0m");
+            System.out.println("\033[1;36m│  7. \033[0m\033[1;37mList Out of Stock Books               \033[1;36m│\033[0m");
+            System.out.println("\033[1;36m│  8. \033[0m\033[1;37mExit System                           \033[1;36m│\033[0m");
+            System.out.println("\033[1;34m└───────────────────────────────────────────┘\033[0m");
 
             try {
                 // Read user input as a string
-                System.out.println("Enter your choice: ");
-                String inputStr = ui.scanner.nextLine().trim();
+                System.out.print("Enter your choice: ");
+                String inputStr = scanner.nextLine().trim();
                 if (!inputStr.matches("\\d+")) {
                     System.out.println("Invalid input. Please enter a number between 1-8 only.");
                     continue;
@@ -43,13 +52,13 @@ public class Main {
 
                 // Process valid option
                 switch (option) {
-                    case 1: ui.bookOperations.AddBook(); break;
-                    case 2: ui.bookOperations.ModifyBook(); break;
-                    case 3: ui.bookOperations.DisplayBooks(); break;
-                    case 4: ui.bookOperations.SearchBook(); break;
-                    case 5: ui.bookOperations.SortBooks(); break;
-                    case 6: ui.bookOperations.RemoveBook(); break;
-                    case 7: ui.bookOperations.OutOfStock(); break;
+                    case 1: bookOperations.AddBook(); break;
+                    case 2: bookOperations.ModifyBook(); break;
+                    case 3: bookOperations.DisplayBooks(); break;
+                    case 4: bookOperations.SearchBook(); break;
+                    case 5: bookOperations.SortBooks(); break;
+                    case 6: bookOperations.RemoveBook(); break;
+                    case 7: bookOperations.OutOfStock(); break;
                     case 8: flag = false; System.out.println("Exiting... Thank you!"); break;
                 }
             } catch (Exception e) {
