@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.InputMismatchException;
-import java.util.Map;
 import java.util.Scanner;
 
     public class BookUI {
@@ -13,7 +10,7 @@ import java.util.Scanner;
 
     public void start() {
         boolean flag = true;
-        System.out.println("Welcome to the Book Management System!");
+        System.out.println("Welcome to the Book Inventory System!");
 
 
         while (flag) {
@@ -28,6 +25,7 @@ import java.util.Scanner;
 
             try {
                 // Read user input as a string
+                System.out.println("Enter your choice: ");
                 String inputStr = scanner.nextLine().trim();
                 if (!inputStr.matches("\\d+")) {
                     System.out.println("Invalid input. Please enter a number between 1-8 only.");
@@ -42,13 +40,13 @@ import java.util.Scanner;
                 }
                 // Process valid option
                 switch (option) {
-                    case 1: bookOperations.handleAddBook(); break;
-                    case 2: bookOperations.handleModifyBook(); break;
-                    case 3: bookOperations.handleDisplayBooks(); break;
-                    case 4: bookOperations.handleSearchBook(); break;
-                    case 5: bookOperations.handleSortBooks(); break;
-                    case 6: bookOperations.handleRemoveBook(); break;
-                    case 7: bookOperations.handleOutOfStock(); break;
+                    case 1: bookOperations.AddBook(); break;
+                    case 2: bookOperations.ModifyBook(); break;
+                    case 3: bookOperations.DisplayBooks(); break;
+                    case 4: bookOperations.SearchBook(); break;
+                    case 5: bookOperations.SortBooks(); break;
+                    case 6: bookOperations.RemoveBook(); break;
+                    case 7: bookOperations.OutOfStock(); break;
                     case 8: flag = false; System.out.println("Exiting... Thank you!"); break;
                 }
             } catch (Exception e) {

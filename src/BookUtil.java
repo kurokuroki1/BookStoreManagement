@@ -10,7 +10,7 @@ public class BookUtil {
                 String input = scanner.nextLine().trim();
                 double value = Double.parseDouble(input);
                 if (value >= min && value <= Double.MAX_VALUE) return value;
-                System.err.println("Please enter a value between " + min + " and " + Double.MAX_VALUE);
+                System.err.println("Value can't be under Zero ");
             } catch (NumberFormatException e) {
                 System.err.println("Invalid input. Enter a valid number.");
             }
