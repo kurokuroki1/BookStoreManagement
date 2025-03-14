@@ -3,7 +3,6 @@ import java.util.*;
 public class BookOperations {
     private final BookManager bookManager;
     public BookOperations() {
-        Scanner scanner = new Scanner(System.in);
         bookManager = new BookManager();
     }
     public void AddBook() {
