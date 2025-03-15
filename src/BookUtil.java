@@ -37,10 +37,18 @@ public class BookUtil {
 
     public static String getNonEmptyInput(String prompt) {
         while (true) {
-            System.out.print(prompt);
-            String input = scanner.nextLine().trim();
-            if (!input.isEmpty()) return input;
-            System.err.println("Input cannot be empty. Please try again.");
+            try {
+                System.out.print(prompt);
+                String input = scanner.nextLine().trim();
+                if (!input.isEmpty()) {
+                    return input;
+                }
+                System.err.println("Input cannot be empty. Please try again.");
+            } catch (IllegalArgumentException e) {
+                System.err.println("Invalid input. Enter a non-empty string");
+            }catch (Exception e) {
+                System.err.println("An error occurred while reading input: " + e.getMessage());
+            }
         }
     }
 }

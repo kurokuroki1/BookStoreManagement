@@ -38,16 +38,16 @@ public class Main {
                 // Read user input as a string
                 System.out.print("Enter your choice: ");
                 String inputStr = scanner.nextLine().trim();
+
                 if (!inputStr.matches("\\d+")) {
-                    System.out.println("Invalid input. Please enter a number between 1-8 only.");
-                    continue;
+                    throw new NumberFormatException("Invalid input. Please enter a number between 1-8 only.");
                 }
 
                 int option = Integer.parseInt(inputStr);
+
                 // Check range
                 if (option < 1 || option > 8) {
-                    System.out.println("Please enter a number between 1-8 only.");
-                    continue;
+                    throw new IllegalArgumentException("Please enter a number between 1-8 only.");
                 }
 
                 // Process valid option
@@ -59,10 +59,17 @@ public class Main {
                     case 5: bookOperations.SortBooks(); break;
                     case 6: bookOperations.RemoveBook(); break;
                     case 7: bookOperations.OutOfStock(); break;
-                    case 8: flag = false; System.out.println("Exiting... Thank you!"); break;
+                    case 8: 
+                        flag = false; 
+                        System.out.println("Exiting... Thank you!"); 
+                        break;
                 }
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Detail: " + e.getMessage());
             } catch (Exception e) {
-                System.out.println("An error occurred while processing your request.");
+                System.out.println("An unexpected error occurred.");
                 if (e.getMessage() != null) {
                     System.out.println("Details: " + e.getMessage());
                 }
